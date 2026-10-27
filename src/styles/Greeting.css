@@ -1,0 +1,39 @@
+.greeting-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#greeting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: dropDown 2s ease forwards;
+}
+
+#greeting p {
+    font-size: xx-large;
+    font-weight: bolder;
+    text-align: center;
+}
+
+#greeting button {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 999px;
+    background-color: #3048F5;
+    color: white;
+    font-size: 24px;
+    font-weight: bolder;
+    transition: transform 0.3s ease;
+}
+
+#greeting button:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+}
