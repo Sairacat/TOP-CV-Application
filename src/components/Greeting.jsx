@@ -1,8 +1,7 @@
 import '../styles/Greeting.css';
 import greetingLogo from '../assets/greeting-logo.svg';
 
-function Greeting({display, handleForward}) {
-    if(!display) return;
+function Greeting({handleForward}) {
 
     return(
         <div className="greeting-container">

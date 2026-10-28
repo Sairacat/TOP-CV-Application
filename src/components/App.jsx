@@ -2,6 +2,7 @@ import { useState } from "react";
 import '../styles/App.css';
 import { Greeting } from "./Greeting.jsx";
 import { Selection } from "./Selection.jsx";
+import { Form } from "./Form.jsx";
 
 function App() {
     const [pageIndex, setPageIndex] = useState(0);
@@ -15,17 +16,19 @@ function App() {
         setPageIndex(pageIndex-1);
     }
 
-    function updateTemplate(style) {
-        setTemplate(style);
+    function updateTemplate(layout) {
+        setTemplate(layout);
     }
+
+    console.log(template);
 
     return(
         <div>
-            <Greeting display={pageIndex === 0} handleForward={forwardPage}/>
-            <Selection display={pageIndex === 1} 
-                        handleForward={forwardPage} 
-                        handleBackward={backwardPage} 
-                        updateTemplate={updateTemplate}/>
+            {pageIndex === 0 && (<Greeting handleForward={forwardPage}/>)}
+            {pageIndex === 1 && (<Selection handleForward={forwardPage} handleBackward={backwardPage} updateTemplate={updateTemplate}/>)}
+            {pageIndex === 2 && (<Form handleBackward={backwardPage}/>)}
+
+
         </div>
     )
 

@@ -1,7 +1,18 @@
+import { useState } from 'react';
+import { ButtonCard } from './ButtonCard';
 import '../styles/selection.css'
+import arrowRight from '../assets/arrow-right.svg'
+import arrowLeft from '../assets/arrow-left.svg'
 
-function Selection({display, handleForward, handleBackward, updateTemplate}) {
-    if(!display) return;
+function Selection({handleForward, handleBackward, updateTemplate}) {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    console.log(selectedIndex);
+
+    function toFormPage() {
+        const layout = selectedIndex === 0 ? 'layout1' : 'layout2'
+        updateTemplate(layout);
+        handleForward();
+    }
 
     return(
         <div className="selection-container">
@@ -10,14 +21,19 @@ function Selection({display, handleForward, handleBackward, updateTemplate}) {
                     <h1>Choose your layout</h1>
                 </header>
                 <div className="layout-zone">
-                    <button>
-                        <div className="layout1"></div>
-                    </button>
-                    <button>
-                        <div className="layout2"></div>
-                    </button>
+                    <ButtonCard layout="layout1" isSelected={selectedIndex === 0} handleClick={() => setSelectedIndex(0)}/>
+                    <ButtonCard layout="layout2" isSelected={selectedIndex === 1} handleClick={() => setSelectedIndex(1)}/>
                 </div>
-                <button onClick={handleBackward}>Back</button>
+                <footer>
+                    <button onClick={handleBackward}>
+                        <img src={arrowLeft} alt="To previous page" height="80"/>
+                    </button>
+                    <button onClick={toFormPage}>
+                        <img src={arrowRight} alt="To next page" height="80"/>
+                    </button>
+
+
+                </footer>
             </section>
         </div>
     )

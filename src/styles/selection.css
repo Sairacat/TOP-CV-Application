@@ -14,14 +14,89 @@
 }
 
 .layout-zone button {
-    appearance: none;
-    padding: none;
+    border: none;
+    border-radius: 8px;
+    padding: 0;
     width: 20vw;
     aspect-ratio: 1 / 1.5;
+    animation: dropDown 2s ease forwards;
+}
+
+.layout-zone button:hover {
+    cursor: pointer;
+}
+
+.isSelected {
+    outline: 2px solid #3B82F6;
+    outline-offset: 10px;
 }
 
 .layout1,
 .layout2 {
     height: 100%;
     background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    padding: 5px;
+}
+
+.layout1 {
+    grid-template-areas: 
+    "info education"
+    "info work"
+    "info work"
+    ;
+}
+
+.layout2 {
+    grid-template-areas: 
+    "info info"
+    "education education"
+    "work work"
+    ;
+}
+
+.info, .education, .work {
+    border-radius: 16px;
+}
+
+.layout1 .info,
+.layout2 .info {
+    grid-area: info;
+    background-color: #3B82F6;
+}
+
+.layout1 .education,
+.layout2 .education {
+    grid-area: education;
+    background-color: #10B981;
+}
+
+.layout1 .work,
+.layout2 .work {
+    grid-area: work;
+    background-color: #F59E0B;
+}
+
+#selection footer {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer button {
+    border: none;
+    padding: 0;
+    background-color: white;
+}
+
+#selection img {
+    transition: transform 0.4s ease;
+}
+
+#selection img:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
