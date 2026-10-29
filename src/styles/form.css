@@ -12,11 +12,19 @@ form h1 {
 }
 
 form section {
-    padding: 1rem;
+    padding: 2rem 1rem 2rem 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+#general-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
     row-gap: 20px;
 }
+
 
 input {
     margin-left: 5px;
