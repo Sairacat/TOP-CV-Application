@@ -21,19 +21,15 @@ function Selection({handleForward, handleBackward, updateTemplate}) {
                     <h1>Choose your layout</h1>
                 </header>
                 <div className="layout-zone">
-                    <ButtonCard layout="layout1" isSelected={selectedIndex === 0} handleClick={() => setSelectedIndex(0)}/>
-                    <ButtonCard layout="layout2" isSelected={selectedIndex === 1} handleClick={() => setSelectedIndex(1)}/>
-                </div>
-                <footer>
-                    <button onClick={handleBackward}>
+                    <button onClick={handleBackward} className="page-button">
                         <img src={arrowLeft} alt="To previous page" height="80"/>
                     </button>
-                    <button onClick={toFormPage}>
+                    <ButtonCard layout="layout1" isSelected={selectedIndex === 0} handleClick={() => setSelectedIndex(0)}/>
+                    <ButtonCard layout="layout2" isSelected={selectedIndex === 1} handleClick={() => setSelectedIndex(1)}/>
+                    <button onClick={toFormPage} className="page-button">
                         <img src={arrowRight} alt="To next page" height="80"/>
                     </button>
-
-
-                </footer>
+                </div>
             </section>
         </div>
     )

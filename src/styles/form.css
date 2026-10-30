@@ -11,24 +11,99 @@ form h1 {
     padding: 1rem;
 }
 
+form h2 {
+    padding: 1rem;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #94a3b8;
+}
+
 form section {
     padding: 2rem 1rem 2rem 1rem;
 }
 
 ul {
     list-style: none;
-}
-
-#general-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 20px;
+    padding: 0;
 }
 
 
-input {
-    margin-left: 5px;
-    padding-left: 5px;
+.input-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-unit {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+label {
+    font-weight: bolder;
+}
+
+.label {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.save-btn,
+.edit-btn {
+    width: fit-content;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    background-color: #94a3b8;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.save-btn:hover,
+.edit-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.add-btn {
+    border: none;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+    transform: rotate(360deg);
+}
+
+
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="number"] {
+    width: 300px;
+    padding: 12px 18px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #1e293b;
+    background: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input::placeholder {
+    color: #94a3b8;
+}
+
+input:focus {
+    border-color: #818cf8;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
 }
 
 
