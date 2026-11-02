@@ -4,43 +4,54 @@ import arrowLeft from '../assets/arrow-left.svg';
 import addBtn from '../assets/add-btn.svg'
 import { GeneralInfo } from "./GeneralInfo.jsx";
 import { EducationInfo } from "./EducationInfo.jsx";
-import { SavedGeneralCard } from "./savedCards.jsx";
+import { SavedGeneralCard, SavedEducationCard } from "./savedCards.jsx";
 
 function Form({handleBackward}) {
 
     const [generalFields, setGeneralFields] = useState(
-        [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]);
+        [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
+    );
 
-    const [educationFields, setEducationFields] = useState([{id:crypto.randomUUID()}]);
+    const [educationFields, setEducationFields] = useState(
+        [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
+    );
 
-    function saveGeneralFields(id, info) {
-        const savedFields = generalFields.map(field => {
-            if(field.id === id) {
-                return {...field, isSaved: true, savedValue: {...info}};
-            }
-        })
-
-        setGeneralFields(savedFields);
+    const settersMap = {
+        general: setGeneralFields,
+        education: setEducationFields,
     }
 
-    function editGeneralFields(id) {
-        const edittedFields = generalFields.map(field => {
+    function saveFields(id, info, type) {
+        const stateSetter = settersMap[type];
+        stateSetter(prev => prev.map(field => {
+            if(field.id === id) {
+                return {...field, isSaved: true, savedValue: {...info}}
+            }else {
+                return field;
+            }
+        }))
+    }
+
+    function editFields(id, type) {
+        const stateSetter = settersMap[type];
+        stateSetter(prev => prev.map(field => {
             if(field.id === id) {
                 return {...field, isSaved: false};
+            }else {
+                return field
             }
-        })
-
-        setGeneralFields(edittedFields);
+        }))
     }
 
-    function addEducationField(e) {
+    function addField(e, type) {
         e.preventDefault();
-        setEducationFields([...educationFields, {id:crypto.randomUUID()}]);
+        const stateSetter = settersMap[type];
+        stateSetter(prev => [...prev, {id:crypto.randomUUID(), isSaved: false, savedValue: null,}])
     }
 
-    function removeEducationField(id) {
-        const filterdFields = educationFields.filter(field => field.id !== id);
-        setEducationFields(filterdFields);
+    function removeField(id, type) {
+        const stateSetter = settersMap[type];
+        stateSetter(prev => prev.filter(field => field.id !== id));
     }
 
 
@@ -51,16 +62,20 @@ return(
             <h1>Fill Out Your CV/Resume!</h1>
             {generalFields.map(field => 
             field.isSaved 
-            ? <SavedGeneralCard key={field.id} id={field.id} handleEdit={editGeneralFields} savedValue={field.savedValue}/>
-            : <GeneralInfo key={field.id} id={field.id} savedValue={field.savedValue} handleSave={saveGeneralFields}/>)
-            }
+            ? <SavedGeneralCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="general"/>
+            : <GeneralInfo key={field.id} id={field.id} handleSave={saveFields} savedValue={field.savedValue} setterType="general"/>
+            )}
 
-            <h2>Education</h2>
+            <h2 className="fields-title">Education</h2>
             
             <ul>
-                {educationFields.map(field => <EducationInfo key={field.id} id={field.id} handleRemove={removeEducationField}/>)}
+                {educationFields.map(field =>
+                field.isSaved
+                ? <SavedEducationCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="education"/>
+                : <EducationInfo key={field.id} id={field.id} handleSave={saveFields} handleRemove={removeField} savedValue={field.savedValue} setterType="education"/>                
+            )}
             </ul>
-            <button onClick={addEducationField} type="button" title="add another education field" className="add-btn">
+            <button onClick={(e) => addField(e, 'education')} type="button" title="add another education field" className="add-btn">
                 <img src={addBtn} alt="add another education filed" height="32" />
             </button>
         </form>

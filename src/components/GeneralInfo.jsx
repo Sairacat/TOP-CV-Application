@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../styles/generalInfo.css';
 
-function GeneralInfo({id, savedValue, handleSave}) {
+function GeneralInfo({id, handleSave, savedValue, setterType}) {
     const [generalInfo, setGeneralInfo] = useState(savedValue === null ? {firstName:'', lastName:'', email:'', phone:''} : {...savedValue});
     function handleGeneralInfoChange(e) {
         const {id, value} = e.target;
@@ -36,7 +36,7 @@ function GeneralInfo({id, savedValue, handleSave}) {
                 <input type="tel" id="phone" placeholder="051-8233" value={generalInfo.phone} onChange={handleGeneralInfoChange}/>
             </div>
 
-            <button className="save-btn" type="button" onClick={() => handleSave(id, generalInfo)}>Save</button>
+            <button className="save-btn" type="button" onClick={() => handleSave(id, generalInfo, setterType)}>Save</button>
         </section>
     )
 }

@@ -2,8 +2,9 @@ import { useState } from "react";
 import '../styles/educationInfo.css';
 import deleteBtn from '../assets/delete-btn.svg';
 
-function EducationInfo({id, handleRemove}) {
-    const [educationInfo, setEducationInfo] = useState({
+function EducationInfo({id, handleRemove, handleSave, savedValue, setterType}) {
+    const [educationInfo, setEducationInfo] = useState(savedValue === null ?
+    {
         school: '', 
         major: '', 
         from: '', 
@@ -11,7 +12,7 @@ function EducationInfo({id, handleRemove}) {
         degree: "Master",
         gpa: 3.5,
         moreInfo:'',
-    })
+    } : {...savedValue})
 
     function handleEducationInfoChange(e) {
         const {id, value} = e.target;
@@ -90,15 +91,15 @@ function EducationInfo({id, handleRemove}) {
                     <textarea id="moreInfo" 
                     value={educationInfo.moreInfo} 
                     onChange={handleEducationInfoChange}
-                    placeholder="Your achievements, your hobbies, your school life, etc... Tell us who you really are."
+                    placeholder="Your achievements, your hobbies, your school life, etc... Help us know more about you."
                     ></textarea>
                 </div>
 
-                <button type="button" onClick={() => handleRemove(id)} title="remove field" className="remove-btn">
+                <button type="button" onClick={() => handleRemove(id, setterType)} title="remove field" className="remove-btn">
                     <img src={deleteBtn} alt="delete your education field" height="32"/>
                 </button>
 
-                <button className="save-btn" type="button">Save</button>
+                <button className="save-btn" type="button" title="save your info" onClick={() => handleSave(id, educationInfo, setterType)}>Save</button>
             </section>
         </li>
     )

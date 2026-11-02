@@ -88,3 +88,15 @@ select:focus ~ .select-arrow {
     cursor: pointer;
     animation: shake 0.35s ease-in-out;
 }
+
+.card-body-edu {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 250px 150px;
+    gap: 16px;
+}
+
+.more-info-unit {
+    grid-column: 1 / 4;
+    padding: 8px 16px;
+}
