@@ -1,25 +1,20 @@
+import mailIcon from '../assets/mail-icon.svg';
+import phoneIcon from '../assets/phone-icon.svg';
+
 function SavedGeneralCard({savedValue, id, handleEdit, setterType}) {
     return(
-        <section id="info-card">
+        <section className="info-card">
             <div className="card-header">
-                <h2>General Information</h2>
+                <h2>{savedValue.firstName.trim()} {savedValue.lastName.trim()}</h2>
                 <button className="edit-btn" type="button" onClick={() => handleEdit(id, setterType)} title="edit button">Edit</button>
             </div>
             <div className="card-body">
                 <p className="info-unit">
-                    <span className="label">First Name: </span>
-                    <span className="value">{savedValue.firstName}</span>
-                </p>
-                <p className="info-unit">
-                    <span className="label">Email: </span>
+                    <img src={mailIcon} alt="mail-icon" height="32"/>
                     <span className="value">{savedValue.email}</span>
                 </p>
                 <p className="info-unit">
-                    <span className="label">Last Name: </span>
-                    <span className="value">{savedValue.lastName}</span>
-                </p>
-                <p className="info-unit">
-                    <span className="label">Phone: </span>
+                    <img src={phoneIcon} alt="phone-icon" height="32" />
                     <span className="value">{savedValue.phone}</span>
                 </p>
             </div>
@@ -29,26 +24,51 @@ function SavedGeneralCard({savedValue, id, handleEdit, setterType}) {
 
 function SavedEducationCard({savedValue, id, handleEdit, setterType}) {
     return(
-        <section id="info-card">
+        <section className="info-card">
             <div className="card-header">
                 <h2>{savedValue.degree} of {savedValue.major}</h2>
                 <button className="edit-btn" type="button" onClick={() => handleEdit(id, setterType)} title="edit button">Edit</button>
             </div>
             <div className="card-body-edu">
                 <p className="info-unit">
-                    <span className="label">School: </span>
                     <span className="value">{savedValue.school}</span>
                 </p>
                 <p className="info-unit">
-                    <span className="label">Dates: </span>
                     <span className="value">{formatDate(savedValue.from)} - {formatDate(savedValue.to)}</span>
                 </p>
                 <p className="info-unit">
-                    <span className="label">GPA: </span>
                     <span className="value">{savedValue.gpa}/4.0</span>
                 </p>
                 <p className="more-info-unit">
                     {savedValue.moreInfo}
+                </p>
+            </div>
+        </section>
+    )
+}
+
+function SavedCareerCard({savedValue, id, handleEdit, setterType}) {
+    return(
+        <section className="info-card">
+            <div className="card-header">
+                <h2>{savedValue.title}</h2>
+                <button className="edit-btn" type="button" onClick={() => handleEdit(id, setterType)} title="edit button">Edit</button>  
+            </div>
+            <div className="card-body-career">
+                <p className="info-unit">
+                    <span className="value">{savedValue.company}</span>
+                </p>
+                <p className="info-unit">
+                    <span className="value">{formatDate(savedValue.careerStart)} - {formatDate(savedValue.careerEnd)}</span>
+                </p>
+                <p className="info-unit">
+                    <span className="value">{savedValue.eType}</span>
+                </p>
+                <p className="info-unit">
+                    <span className="value">{savedValue.currency}{formatIncome(savedValue.income)}/year</span>
+                </p>
+                <p className="JB-unit">
+                    {savedValue.JB}
                 </p>
             </div>
         </section>
@@ -62,4 +82,12 @@ function formatDate(date) {
     return formattedDate;
 }
 
-export {SavedGeneralCard, SavedEducationCard};
+function formatIncome(value) {
+    if(value === '' || value === null || isNaN(value)) {
+        return '0'
+    }
+
+    return Number(value).toLocaleString('en-US');
+}
+
+export {SavedGeneralCard, SavedEducationCard, SavedCareerCard};

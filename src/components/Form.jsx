@@ -4,7 +4,8 @@ import arrowLeft from '../assets/arrow-left.svg';
 import addBtn from '../assets/add-btn.svg'
 import { GeneralInfo } from "./GeneralInfo.jsx";
 import { EducationInfo } from "./EducationInfo.jsx";
-import { SavedGeneralCard, SavedEducationCard } from "./savedCards.jsx";
+import { Career } from "./Career.jsx";
+import { SavedGeneralCard, SavedEducationCard, SavedCareerCard } from "./savedCards.jsx";
 
 function Form({handleBackward}) {
 
@@ -16,9 +17,16 @@ function Form({handleBackward}) {
         [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
     );
 
+    const [careerFields, setCareerFields] = useState(
+        [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
+    )
+
+
     const settersMap = {
         general: setGeneralFields,
         education: setEducationFields,
+        career: setCareerFields,
+        //using a settersMap can save us from writing a lot more similar callbacks such as saveEducationFields or editCareerFields.
     }
 
     function saveFields(id, info, type) {
@@ -27,7 +35,7 @@ function Form({handleBackward}) {
             if(field.id === id) {
                 return {...field, isSaved: true, savedValue: {...info}}
             }else {
-                return field;
+                return field; // must return it, otherwise it will return undefined, which will result a bug during rendering, since there is nothing to render.
             }
         }))
     }
@@ -61,9 +69,9 @@ return(
         <form action="">
             <h1>Fill Out Your CV/Resume!</h1>
             {generalFields.map(field => 
-            field.isSaved 
-            ? <SavedGeneralCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="general"/>
-            : <GeneralInfo key={field.id} id={field.id} handleSave={saveFields} savedValue={field.savedValue} setterType="general"/>
+                field.isSaved 
+                ? <SavedGeneralCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="general"/>
+                : <GeneralInfo key={field.id} id={field.id} handleSave={saveFields} savedValue={field.savedValue} setterType="general"/>
             )}
 
             <h2 className="fields-title">Education</h2>
@@ -75,8 +83,20 @@ return(
                 : <EducationInfo key={field.id} id={field.id} handleSave={saveFields} handleRemove={removeField} savedValue={field.savedValue} setterType="education"/>                
             )}
             </ul>
-            <button onClick={(e) => addField(e, 'education')} type="button" title="add another education field" className="add-btn">
+            <button onClick={(e) => addField(e, 'education')} type="button" title="add another education field" className="add-btn" style={{marginBottom:30}}>
                 <img src={addBtn} alt="add another education filed" height="32" />
+            </button>
+
+            <h2 className="fields-title">Career</h2>
+            <ul>
+                {careerFields.map(field =>
+                    field.isSaved
+                    ? <SavedCareerCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="career"/>
+                    : <Career key={field.id} id={field.id} handleSave={saveFields} handleRemove={removeField} savedValue={field.savedValue} setterType="career"/>
+                )}
+            </ul>
+            <button onClick={(e) => addField(e, 'career')} type="button" title="add another career field" className="add-btn" style={{marginBottom:30}}>
+                <img src={addBtn} alt="add another career filed" height="32" />
             </button>
         </form>
         <button onClick={handleBackward}>

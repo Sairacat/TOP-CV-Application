@@ -13,7 +13,7 @@ form h1 {
 
 .fields-title {
     padding: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     border-bottom: 1px solid #94a3b8;
 }
 
@@ -37,10 +37,12 @@ ul {
     display: flex;
     gap: 20px;
     align-items: center;
+    justify-content: center;
 }
 
 label {
     font-weight: bolder;
+    margin-left: 2px;
 }
 
 .label {
@@ -57,10 +59,11 @@ label {
     width: fit-content;
     border: 1px solid #e2e8f0;
     border-radius: 999px;
-    background-color: #94a3b8;
+    background-color: #3787F6;
     color: white;
     padding: 0.5rem 1.5rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: bold;
     outline: none;
 }
 
@@ -112,7 +115,7 @@ input:focus {
 }
 
 
-#info-card{
+.info-card{
     width: 100%;
     padding: 20px 24px;
     background: #ffffff;
@@ -123,7 +126,7 @@ input:focus {
     margin-bottom: 20px;
 }
 
-#info-card:hover{
+.info-card:hover{
     border-color: #cbd5e1;
     transform: translateY(-2px);
     box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
