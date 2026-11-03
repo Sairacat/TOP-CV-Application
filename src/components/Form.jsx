@@ -5,7 +5,8 @@ import addBtn from '../assets/add-btn.svg'
 import { GeneralInfo } from "./GeneralInfo.jsx";
 import { EducationInfo } from "./EducationInfo.jsx";
 import { Career } from "./Career.jsx";
-import { SavedGeneralCard, SavedEducationCard, SavedCareerCard } from "./savedCards.jsx";
+import { Certification } from "./Certification.jsx";
+import { SavedGeneralCard, SavedEducationCard, SavedCareerCard, SavedCertificationCard } from "./savedCards.jsx";
 
 function Form({handleBackward}) {
 
@@ -21,11 +22,16 @@ function Form({handleBackward}) {
         [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
     )
 
+    const [certFields, setCertFields] = useState(
+        [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
+    )
+
 
     const settersMap = {
         general: setGeneralFields,
         education: setEducationFields,
         career: setCareerFields,
+        cert: setCertFields,
         //using a settersMap can save us from writing a lot more similar callbacks such as saveEducationFields or editCareerFields.
     }
 
@@ -97,6 +103,18 @@ return(
             </ul>
             <button onClick={(e) => addField(e, 'career')} type="button" title="add another career field" className="add-btn" style={{marginBottom:30}}>
                 <img src={addBtn} alt="add another career filed" height="32" />
+            </button>
+
+            <h2 className="fields-title">Certification</h2>
+            <ul>
+                {certFields.map(field =>
+                    field.isSaved
+                    ? <SavedCertificationCard key={field.id} id={field.id} handleEdit={editFields} savedValue={field.savedValue} setterType="cert"/>
+                    : <Certification key={field.id} id={field.id} handleSave={saveFields} handleRemove={removeField} savedValue={field.savedValue} setterType="cert"/>
+                )}
+            </ul>
+            <button onClick={(e) => addField(e, 'cert')} type="button" title="add another certification field" className="add-btn" style={{marginBottom:30}}>
+                <img src={addBtn} alt="add another certification filed" height="32" />
             </button>
         </form>
         <button onClick={handleBackward}>

@@ -5,7 +5,7 @@ function SavedGeneralCard({savedValue, id, handleEdit, setterType}) {
     return(
         <section className="info-card">
             <div className="card-header">
-                <h2>{savedValue.firstName.trim()} {savedValue.lastName.trim()}</h2>
+                <h2>{formatName(savedValue.firstName)} {formatName(savedValue.lastName)}</h2>
                 <button className="edit-btn" type="button" onClick={() => handleEdit(id, setterType)} title="edit button">Edit</button>
             </div>
             <div className="card-body">
@@ -75,6 +75,23 @@ function SavedCareerCard({savedValue, id, handleEdit, setterType}) {
     )
 }
 
+function SavedCertificationCard({savedValue, id, handleEdit, setterType}) {
+    return(
+        <section className="info-card">
+            <div className="cert-header">
+                <h2>{savedValue.certName}</h2>
+                <span className="value">{formatDate(savedValue.acquiredTime)}</span>
+                <button className="edit-btn" type="button" onClick={() => handleEdit(id, setterType)} title="edit button">Edit</button>                
+            </div>
+        </section>
+    )
+}
+
+function formatName(name) {
+    const trimmedName = name.trim();
+    return trimmedName.slice(0,1).toUpperCase() + trimmedName.slice(1).toLowerCase();
+}
+
 function formatDate(date) {
     if(!date) return;
     const dateArray = date.split('-');
@@ -90,4 +107,4 @@ function formatIncome(value) {
     return Number(value).toLocaleString('en-US');
 }
 
-export {SavedGeneralCard, SavedEducationCard, SavedCareerCard};
+export {SavedGeneralCard, SavedEducationCard, SavedCareerCard, SavedCertificationCard};
