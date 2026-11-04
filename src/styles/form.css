@@ -3,7 +3,26 @@ form {
     min-height: 100vh;
     margin: 0 auto;
     padding: 2rem;
+    position: relative;
 }
+
+.fixed-btn {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: none;
+    z-index: 10;
+    cursor: pointer;
+    transition: transform 0.35s ease;
+}
+
+.fixed-btn:hover {
+    transform: scale(1.05) translateY(-50%);
+}
+
+
 
 form h1 {
     font-size: 36px;
@@ -11,13 +30,14 @@ form h1 {
     padding: 1rem;
 }
 
-.fields-title {
+.fields-title,
+.submit-area {
     padding: 1rem;
     margin-bottom: 30px;
     border-bottom: 1px solid #94a3b8;
 }
 
-form section {
+form section{
     padding: 2rem 1rem 2rem 1rem;
 }
 
@@ -55,7 +75,8 @@ label {
 }
 
 .save-btn,
-.edit-btn {
+.edit-btn,
+.submit-btn {
     width: fit-content;
     border: 1px solid #e2e8f0;
     border-radius: 999px;
@@ -68,7 +89,8 @@ label {
 }
 
 .save-btn:hover,
-.edit-btn:hover {
+.edit-btn:hover,
+.submit-btn:hover {
     cursor: pointer;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
     transform: translateY(-1px);
@@ -84,6 +106,8 @@ label {
     cursor: pointer;
     transform: rotate(360deg);
 }
+
+
 
 
 
@@ -111,6 +135,12 @@ input::placeholder {
 input:focus {
     border-color: #818cf8;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+input:user-invalid {
+    border-color: red;
+    box-shadow: 0 0 0 4px rgba(243, 17, 5, 0.15), 0 4px 12px rgba(243, 17, 5, 0.1);
     transform: translateY(-1px);
 }
 

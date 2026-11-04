@@ -8,7 +8,7 @@ import { Career } from "./Career.jsx";
 import { Certification } from "./Certification.jsx";
 import { SavedGeneralCard, SavedEducationCard, SavedCareerCard, SavedCertificationCard } from "./savedCards.jsx";
 
-function Form({handleBackward}) {
+function Form({handleBackward, handleSubmitInfo}) {
 
     const [generalFields, setGeneralFields] = useState(
         [{id:crypto.randomUUID(), isSaved: false, savedValue: null,}]
@@ -68,6 +68,17 @@ function Form({handleBackward}) {
         stateSetter(prev => prev.filter(field => field.id !== id));
     }
 
+    function handleSubmit() {
+        const submitInfo = {
+            generalInfo: [...generalFields],
+            educationInfo: [...educationFields],
+            careerInfo: [...careerFields],
+            certInfo: [...certFields],
+        }
+
+        handleSubmitInfo(submitInfo);
+    }
+
 
 
 return(
@@ -116,8 +127,12 @@ return(
             <button onClick={(e) => addField(e, 'cert')} type="button" title="add another certification field" className="add-btn" style={{marginBottom:30}}>
                 <img src={addBtn} alt="add another certification filed" height="32" />
             </button>
+
+            <div className="submit-area">
+                <h2>Save your fields and submit!</h2>
+            </div>
         </form>
-        <button onClick={handleBackward}>
+        <button onClick={handleBackward} type="button" title="to previous page" className="fixed-btn">
             <img src={arrowLeft} alt="to previous page" height="80"/>
         </button>
     </div>

@@ -6,11 +6,12 @@ import { Form } from "./Form.jsx";
 
 function App() {
     const [pageIndex, setPageIndex] = useState(0);
-    const [template, setTemplate] = useState('');
+    const [template, setTemplate] = useState(null);
     const [infoObject, setInfoObject] = useState({
         generalInfo: null,
         educationInfo: null,
-        workInfo: null,
+        careerInfo: null,
+        certInfo: null,
     })
 
     function forwardPage() {
@@ -30,8 +31,8 @@ function App() {
     return(
         <div>
             {pageIndex === 0 && (<Greeting handleForward={forwardPage}/>)}
-            {pageIndex === 1 && (<Selection handleForward={forwardPage} handleBackward={backwardPage} updateTemplate={updateTemplate}/>)}
-            {pageIndex === 2 && (<Form handleBackward={backwardPage}/>)}
+            {pageIndex === 1 && (<Selection handleForward={forwardPage} handleBackward={backwardPage} updateTemplate={updateTemplate} templateIndex={template}/>)}
+            {pageIndex === 2 && (<Form handleBackward={backwardPage} handleSubmitInfo={setInfoObject}/>)}
         </div>
     )
 
