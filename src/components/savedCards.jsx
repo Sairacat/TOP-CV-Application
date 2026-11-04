@@ -37,7 +37,7 @@ function SavedEducationCard({ savedValue, id, handleEdit, setterType }) {
     <section className="info-card">
       <div className="card-header">
         <h2>
-          {savedValue.degree} of {savedValue.major}
+          {savedValue.degree.value} of {savedValue.major.value}
         </h2>
         <button
           className="edit-btn"
@@ -50,17 +50,17 @@ function SavedEducationCard({ savedValue, id, handleEdit, setterType }) {
       </div>
       <div className="card-body-edu">
         <p className="info-unit">
-          <span className="value">{savedValue.school}</span>
+          <span className="value">{savedValue.school.value}</span>
         </p>
         <p className="info-unit">
           <span className="value">
-            {formatDate(savedValue.from)} - {formatDate(savedValue.to)}
+            {formatDate(savedValue.from.value)} - {formatDate(savedValue.to.value)}
           </span>
         </p>
         <p className="info-unit">
-          <span className="value">{savedValue.gpa}/4.0</span>
+          <span className="value">{savedValue.gpa.value}/4.0</span>
         </p>
-        <p className="more-info-unit">{savedValue.moreInfo}</p>
+        <p className="more-info-unit">{savedValue.moreInfo.value}</p>
       </div>
     </section>
   );
