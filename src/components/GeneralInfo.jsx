@@ -70,7 +70,6 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
 
     if (hasError) {
       setGeneralInfo(validatedInfo);
-      return;
     } else {
       handleSave(id, generalInfo, setterType);
     }

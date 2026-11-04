@@ -2,7 +2,12 @@ import { useState } from "react";
 import "../styles/educationInfo.css";
 import deleteBtn from "../assets/delete-btn.svg";
 
-const validityStates = ["valueMissing", "stepMismatch", "rangeOverflow", "rangeUnderflow"];
+const validityStates = [
+  "valueMissing",
+  "stepMismatch",
+  "rangeOverflow",
+  "rangeUnderflow",
+];
 const errorMessageMap = {
   valueMissing: "/Required*",
   stepMismatch: "/Decimal place: 1",
@@ -49,33 +54,32 @@ function EducationInfo({
 
   function handleValiadationAndSave() {
     let hasError = false;
-    const validatedInfo = {...educationInfo};
+    const validatedInfo = { ...educationInfo };
 
-    Object.keys(validatedInfo).forEach(key => {
-        if(key === 'moreInfo' || key === 'degree') return;
-        const field = validatedInfo[key];
+    Object.keys(validatedInfo).forEach((key) => {
+      if (key === "moreInfo" || key === "degree") return;
+      const field = validatedInfo[key];
 
-        if(!field.isValid) {
-            hasError = true;
-            return;
-        }
-
-        if(String(field.value).trim() === '' && field.isValid) {
-            validatedInfo[key] = {
-                ...field,
-                isValid: false,
-                errorMsg: 'Required*',
-            };
-
-            hasError = true;
-        }
-    })
-
-    if(hasError) {
-        setEducationInfo(validatedInfo);
+      if (!field.isValid) {
+        hasError = true;
         return;
-    }else {
-        handleSave(id, educationInfo, setterType);
+      }
+
+      if (String(field.value).trim() === "" && field.isValid) {
+        validatedInfo[key] = {
+          ...field,
+          isValid: false,
+          errorMsg: "Required*",
+        };
+
+        hasError = true;
+      }
+    });
+
+    if (hasError) {
+      setEducationInfo(validatedInfo);
+    } else {
+      handleSave(id, educationInfo, setterType);
     }
   }
 

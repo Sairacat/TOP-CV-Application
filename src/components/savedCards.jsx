@@ -70,7 +70,7 @@ function SavedCareerCard({ savedValue, id, handleEdit, setterType }) {
   return (
     <section className="info-card">
       <div className="card-header">
-        <h2>{savedValue.title}</h2>
+        <h2>{savedValue.title.value}</h2>
         <button
           className="edit-btn"
           type="button"
@@ -82,24 +82,24 @@ function SavedCareerCard({ savedValue, id, handleEdit, setterType }) {
       </div>
       <div className="card-body-career">
         <p className="info-unit">
-          <span className="value">{savedValue.company}</span>
+          <span className="value">{savedValue.company.value}</span>
         </p>
         <p className="info-unit">
           <span className="value">
-            {formatDate(savedValue.careerStart)} -{" "}
-            {formatDate(savedValue.careerEnd)}
+            {formatDate(savedValue.careerStart.value)} -{" "}
+            {formatDate(savedValue.careerEnd.value)}
           </span>
         </p>
         <p className="info-unit">
-          <span className="value">{savedValue.eType}</span>
+          <span className="value">{savedValue.eType.value}</span>
         </p>
         <p className="info-unit">
           <span className="value">
-            {savedValue.currency}
-            {formatIncome(savedValue.income)}/year
+            {savedValue.currency.value}
+            {formatIncome(savedValue.income.value)}/year
           </span>
         </p>
-        <p className="JB-unit">{savedValue.JB}</p>
+        <p className="JB-unit">{savedValue.JB.value}</p>
       </div>
     </section>
   );
