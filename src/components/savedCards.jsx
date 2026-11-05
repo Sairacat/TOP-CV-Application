@@ -109,8 +109,8 @@ function SavedCertificationCard({ savedValue, id, handleEdit, setterType }) {
   return (
     <section className="info-card">
       <div className="cert-header">
-        <h2>{savedValue.certName}</h2>
-        <span className="value">{formatDate(savedValue.acquiredTime)}</span>
+        <h2>{savedValue.certName.value}</h2>
+        <span className="value">{formatDate(savedValue.acquiredTime.value)}</span>
         <button
           className="edit-btn"
           type="button"

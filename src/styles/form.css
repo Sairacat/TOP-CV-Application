@@ -30,15 +30,49 @@ form h1 {
     padding: 1rem;
 }
 
-.fields-title,
-.submit-area {
+.fields-title {
     padding: 1rem;
     margin-bottom: 30px;
     border-bottom: 1px solid #94a3b8;
 }
 
-form section{
+form section,
+.submit-area{
     padding: 2rem 1rem 2rem 1rem;
+}
+
+.submit-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    position: relative;
+}
+
+.submit-error {
+    background-color: rgba(255, 0, 0, 0.05);
+    border: 2px solid red;
+    border-radius: 16px;
+}
+
+.submit-area p {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.close-btn {
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: scale(1.05);
 }
 
 ul {
@@ -94,6 +128,10 @@ label {
     cursor: pointer;
     box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(99, 102, 241, 0.1);
     transform: translateY(-1px);
+}
+
+.submit-btn {
+    font-size: 18px;
 }
 
 .add-btn {

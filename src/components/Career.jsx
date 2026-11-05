@@ -25,7 +25,6 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
       : { ...savedValue },
   );
 
-
   function handleCareerInfoChange(e) {
     const { id, value, validity } = e.target;
     const failedKeys = validityStates.filter((key) => validity[key]);
@@ -44,32 +43,32 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
 
   function handleValidationAndSave() {
     let hasError = false;
-    const validatedInfo = {...careerInfo};
+    const validatedInfo = { ...careerInfo };
 
-    Object.keys(validatedInfo).forEach(key => {
-        if(key === "eType" || key === "currency" || key === "JB") return;
+    Object.keys(validatedInfo).forEach((key) => {
+      if (key === "eType" || key === "currency" || key === "JB") return;
 
-        const field = validatedInfo[key];
-        if(!field.isValid) {
-            hasError = true;
-            return;
-        }
+      const field = validatedInfo[key];
+      if (!field.isValid) {
+        hasError = true;
+        return;
+      }
 
-        if(field.value === "" && field.isValid) {
-            validatedInfo[key] = {
-                ...field,
-                isValid: false,
-                errorMsg: "Required*"
-            }
+      if (field.value === "" && field.isValid) {
+        validatedInfo[key] = {
+          ...field,
+          isValid: false,
+          errorMsg: "Required*",
+        };
 
-            hasError = true;
-        }
-    })
+        hasError = true;
+      }
+    });
 
-    if(hasError) {
-        setCareerInfo(validatedInfo);
-    }else {
-        handleSave(id, careerInfo, setterType);
+    if (hasError) {
+      setCareerInfo(validatedInfo);
+    } else {
+      handleSave(id, careerInfo, setterType);
     }
   }
 
