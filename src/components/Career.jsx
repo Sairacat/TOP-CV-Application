@@ -77,7 +77,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
       <section className="career-info">
         <div className="input-unit">
           <label htmlFor="company">
-            Company:{" "}
+            Company{" "}
             {careerInfo.company.isValid ? null : (
               <span
                 style={{
@@ -102,7 +102,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
 
         <div className="input-unit">
           <label htmlFor="title">
-            Title:{" "}
+            Title{" "}
             {careerInfo.title.isValid ? null : (
               <span
                 style={{
@@ -127,7 +127,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
 
         <div className="input-unit">
           <label htmlFor="careerStart">
-            From:{" "}
+            From{" "}
             {careerInfo.careerStart.isValid ? null : (
               <span
                 style={{
@@ -151,7 +151,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
 
         <div className="input-unit">
           <label htmlFor="careerEnd">
-            To:{" "}
+            To{" "}
             {careerInfo.careerEnd.isValid ? null : (
               <span
                 style={{
@@ -175,13 +175,14 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="eType">Employment Type:</label>
+          <label htmlFor="eType">Employment Type</label>
           <div className="select-container">
             <select
               id="eType"
               value={careerInfo.eType.value}
               onChange={handleCareerInfoChange}
             >
+              <option value="Internship">Internship</option>
               <option value="Part-time">Part-time</option>
               <option value="Full-time">Full-time</option>
             </select>
@@ -206,7 +207,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
 
         <div className="input-unit">
           <label htmlFor="income">
-            Annual Salary:{" "}
+            Annual Salary{" "}
             {careerInfo.income.isValid ? null : (
               <span
                 style={{
@@ -240,8 +241,8 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </div>
         </div>
 
-        <div className="input-unit job-info">
-          <label htmlFor="JB">Job Description:</label>
+        <div className="input-unit text-area">
+          <label htmlFor="JB">Job Description</label>
           <textarea
             id="JB"
             placeholder="What's your role in the team? What have you accomplished? What have you learned?... Help us learn more about you."

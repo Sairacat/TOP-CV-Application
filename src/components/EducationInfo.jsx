@@ -245,13 +245,13 @@ function EducationInfo({
           />
         </div>
 
-        <div className="input-unit more-info">
+        <div className="input-unit text-area">
           <label htmlFor="moreInfo">More information</label>
           <textarea
             id="moreInfo"
             value={educationInfo.moreInfo.value}
             onChange={handleEducationInfoChange}
-            placeholder="Your achievements, your hobbies, your school life, etc... Help us know more about you."
+            placeholder="Your school life, what have your learned, your achievement etc... Help us know more about your education experience."
           ></textarea>
         </div>
 

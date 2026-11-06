@@ -55,7 +55,7 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
             <section className="cert-info">
                 <div className="input-unit">
                     <label htmlFor="certName">
-                        Certification Name:{" "}
+                        Certification Name{" "}
                         {certInfo.certName.isValid ? null : (
                         <span
                             style={{
@@ -77,7 +77,7 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
                 </div>
                 <div className="input-unit">
                     <label htmlFor="acquiredTime">
-                        Acquired Time:{""}
+                        Acquired Time{" "}
                         {certInfo.acquiredTime.isValid ? null : (
                         <span
                             style={{

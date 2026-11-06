@@ -1,14 +1,19 @@
 import mailIcon from "../assets/mail-icon.svg";
 import phoneIcon from "../assets/phone-icon.svg";
+import locationIcon from "../assets/location-icon.svg";
+import "../styles/savedCards.css";
 
 function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
   return (
     <section className="info-card">
       <div className="card-header">
-        <h2>
-          {formatName(savedValue.firstName.value)}{" "}
-          {formatName(savedValue.lastName.value)}
-        </h2>
+        <div className="name-title">
+          <h2>
+            {formatName(savedValue.firstName.value)}{" "}
+            {formatName(savedValue.lastName.value)}
+          </h2>
+          <span className="value">{savedValue.currentTitle.value}</span>
+        </div>
         <button
           className="edit-btn"
           type="button"
@@ -18,7 +23,7 @@ function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
           Edit
         </button>
       </div>
-      <div className="card-body">
+      <div className="card-body-general">
         <p className="info-unit">
           <img src={mailIcon} alt="mail-icon" height="32" />
           <span className="value">{savedValue.email.value}</span>
@@ -27,6 +32,11 @@ function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
           <img src={phoneIcon} alt="phone-icon" height="32" />
           <span className="value">{savedValue.phone.value}</span>
         </p>
+        <p className="info-unit">
+          <img src={locationIcon} alt="location-icon" height="32" />
+          <span className="value">{savedValue.address.value}</span>
+        </p>
+        <p className="more-info-unit">{savedValue.aboutMe.value}</p>
       </div>
     </section>
   );

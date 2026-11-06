@@ -5,8 +5,8 @@ const errorMessageMap = {
   valueMissing: "/Required*",
   typeMismatch: "/Invalid Email Format*",
   tooShort: {
-    firstName: "/2 letters at least",
-    lastName: "/2 letters at least",
+    firstName: "/2 characters at least",
+    lastName: "/2 characters at least",
     phone: "/8 numbers at least",
   },
 };
@@ -21,6 +21,9 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
           lastName: { value: "", isValid: true, errorMsg: "" },
           email: { value: "", isValid: true, errorMsg: "" },
           phone: { value: "", isValid: true, errorMsg: "" },
+          currentTitle: {value:"", isValid: true, errorMsg:""},
+          address: {value:"", isValid: true, errorMsg: ""},
+          aboutMe: {value:"", isValid: true, errorMsg:""},
         }
       : { ...savedValue },
   );
@@ -178,6 +181,78 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
           minLength={8}
           required
         />
+      </div>
+
+      <div className="input-unit">
+        <label htmlFor="currentTitle">
+          Current Title{" "}
+          {generalInfo.currentTitle.isValid ? null : (
+            <span
+              style={{
+                color: "red",
+                marginLeft: "10px",
+                fontWeight: "initial",
+              }}
+            >
+              {generalInfo.currentTitle.errorMsg}
+            </span>
+          )}
+        </label>
+        <input 
+          type="text"
+          id="currentTitle"
+          placeholder="cat owner"
+          value={generalInfo.currentTitle.value}
+          onChange={handleGeneralInfoChange}
+          required />
+      </div>
+
+      <div className="input-unit">
+        <label htmlFor="address">
+          Address{" "}
+          {generalInfo.address.isValid ? null : (
+            <span
+              style={{
+                color: "red",
+                marginLeft: "10px",
+                fontWeight: "initial",
+              }}
+            >
+              {generalInfo.address.errorMsg}
+            </span>
+          )}
+        </label>
+        <input 
+          type="text"
+          id="address"
+          placeholder="213 random St. Any City"
+          value={generalInfo.address.value}
+          onChange={handleGeneralInfoChange}
+          required />
+      </div>
+
+      <div className="input-unit text-area">
+        <label htmlFor="aboutMe">
+          About Me{" "}
+          {generalInfo.aboutMe.isValid ? null : (
+            <span
+              style={{
+                color: "red",
+                marginLeft: "10px",
+                fontWeight: "initial",
+              }}
+            >
+              {generalInfo.aboutMe.errorMsg}
+            </span>
+          )}
+        </label>
+        <textarea
+          id="aboutMe"
+          value={generalInfo.aboutMe.value}
+          onChange={handleGeneralInfoChange}
+          placeholder="Your hobbies, your experties, how do you consider yourself, what are your dreams..."
+          required
+        ></textarea>
       </div>
 
       <button

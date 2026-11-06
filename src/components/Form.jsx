@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/form.css";
 import arrowLeft from "../assets/arrow-left.svg";
+import arrowUp from "../assets/arrow-up.svg";
 import addBtn from "../assets/add-btn.svg";
 import closeBtn from "../assets/close-Btn.svg";
 import { GeneralInfo } from "./GeneralInfo.jsx";
@@ -114,6 +115,13 @@ function Form({ handleBackward, handleSubmitInfo }) {
     } else {
       setShowSubmitError(true);
     }
+  }
+
+  function backToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }
 
   return (
@@ -247,7 +255,7 @@ function Form({ handleBackward, handleSubmitInfo }) {
         >
           {showSubmitError ? (
             <p>
-              UnsavedField detected! Please save all your fields before submit.{" "}
+              Unsaved sections detected! Please save all your sections before submit.{" "}
               <button
                 onClick={() => setShowSubmitError(false)}
                 className="close-btn"
@@ -265,6 +273,15 @@ function Form({ handleBackward, handleSubmitInfo }) {
             </button>
           )}
         </div>
+
+        <button
+          type="button"
+          title="back to top"
+          className="backToTopBtn"
+          onClick={backToTop}
+        >
+          <img src={arrowUp} alt="back to top" height="80" />
+        </button>
       </form>
       <button
         onClick={handleBackward}
