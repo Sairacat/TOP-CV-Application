@@ -15,105 +15,17 @@ import {
   SavedCertificationCard,
 } from "./savedCards.jsx";
 
-function Form({ handleBackward, handleSubmitInfo }) {
-  const [generalFields, setGeneralFields] = useState([
-    { id: crypto.randomUUID(), isSaved: false, savedValue: null },
-  ]);
-
-  const [educationFields, setEducationFields] = useState([
-    { id: crypto.randomUUID(), isSaved: false, savedValue: null },
-  ]);
-
-  const [careerFields, setCareerFields] = useState([
-    { id: crypto.randomUUID(), isSaved: false, savedValue: null },
-  ]);
-
-  const [certFields, setCertFields] = useState([
-    { id: crypto.randomUUID(), isSaved: false, savedValue: null },
-  ]);
+function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onRemove, checkForm }) {
 
   const [showSubmitError, setShowSubmitError] = useState(false);
 
-  const settersMap = {
-    general: setGeneralFields,
-    education: setEducationFields,
-    career: setCareerFields,
-    cert: setCertFields,
-    //using a settersMap can save us from writing a lot more similar callbacks such as saveEducationFields or editCareerFields.
-  };
-
-  function saveFields(id, info, type) {
-    const stateSetter = settersMap[type];
-    stateSetter((prev) =>
-      prev.map((field) => {
-        if (field.id === id) {
-          return { ...field, isSaved: true, savedValue: { ...info } };
-        } else {
-          return field; // must return it, otherwise it will return undefined, which will result a bug during rendering, since there is nothing to render.
-        }
-      }),
-    );
-  }
-
-  function editFields(id, type) {
-    const stateSetter = settersMap[type];
-    stateSetter((prev) =>
-      prev.map((field) => {
-        if (field.id === id) {
-          return { ...field, isSaved: false };
-        } else {
-          return field;
-        }
-      }),
-    );
-  }
-
-  function addField(e, type) {
+  function handleSubmit(e) {
     e.preventDefault();
-    const stateSetter = settersMap[type];
-    stateSetter((prev) => [
-      ...prev,
-      { id: crypto.randomUUID(), isSaved: false, savedValue: null },
-    ]);
-  }
-
-  function removeField(id, type) {
-    const stateSetter = settersMap[type];
-    stateSetter((prev) => prev.filter((field) => field.id !== id));
-  }
-
-  function checkInfoAndSubmit(e) {
-    e.preventDefault()
-
-    let shouldSubmit = true;
-
-    const submitInfo = {
-      generalInfo: [...generalFields],
-      educationInfo: [...educationFields],
-      careerInfo: [...careerFields],
-      certInfo: [...certFields],
-    };
-
-    const keys = Object.keys(submitInfo);
-
-    for (const key of keys) {
-      const info = submitInfo[key];
-      if (info.length === 0) {
-        submitInfo[key] = null;
-        continue;
-      }
-
-      const hasUnsavedField = info.some((field) => !field.isSaved);
-      if (hasUnsavedField) {
-        shouldSubmit = false;
-        break;
-      }
-    }
-
-    if (shouldSubmit) {
-      handleSubmitInfo(submitInfo);
-    } else {
-      setShowSubmitError(true);
+    let hasError = checkForm();
+    if(hasError) {
+      setShowSubmitError(true)
+    }else {
+      handleForward();
     }
   }
 
@@ -126,14 +38,14 @@ function Form({ handleBackward, handleSubmitInfo }) {
 
   return (
     <div className="form-container">
-      <form action="" onSubmit={checkInfoAndSubmit} noValidate>
+      <form action="" onSubmit={handleSubmit} noValidate>
         <h1>Fill Out Your CV/Resume!</h1>
-        {generalFields.map((field) =>
+        {infos.general.map((field) =>
           field.isSaved ? (
             <SavedGeneralCard
               key={field.id}
               id={field.id}
-              handleEdit={editFields}
+              handleEdit={onEdit}
               savedValue={field.savedValue}
               setterType="general"
             />
@@ -141,7 +53,7 @@ function Form({ handleBackward, handleSubmitInfo }) {
             <GeneralInfo
               key={field.id}
               id={field.id}
-              handleSave={saveFields}
+              handleSave={onSave}
               savedValue={field.savedValue}
               setterType="general"
             />
@@ -151,12 +63,12 @@ function Form({ handleBackward, handleSubmitInfo }) {
         <h2 className="fields-title">Education</h2>
 
         <ul>
-          {educationFields.map((field) =>
+          {infos.education.map((field) =>
             field.isSaved ? (
               <SavedEducationCard
                 key={field.id}
                 id={field.id}
-                handleEdit={editFields}
+                handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="education"
               />
@@ -164,8 +76,8 @@ function Form({ handleBackward, handleSubmitInfo }) {
               <EducationInfo
                 key={field.id}
                 id={field.id}
-                handleSave={saveFields}
-                handleRemove={removeField}
+                handleSave={onSave}
+                handleRemove={onRemove}
                 savedValue={field.savedValue}
                 setterType="education"
               />
@@ -173,7 +85,7 @@ function Form({ handleBackward, handleSubmitInfo }) {
           )}
         </ul>
         <button
-          onClick={(e) => addField(e, "education")}
+          onClick={() => onAdd("education")}
           type="button"
           title="add another education field"
           className="add-btn"
@@ -184,12 +96,12 @@ function Form({ handleBackward, handleSubmitInfo }) {
 
         <h2 className="fields-title">Career</h2>
         <ul>
-          {careerFields.map((field) =>
+          {infos.career.map((field) =>
             field.isSaved ? (
               <SavedCareerCard
                 key={field.id}
                 id={field.id}
-                handleEdit={editFields}
+                handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="career"
               />
@@ -197,8 +109,8 @@ function Form({ handleBackward, handleSubmitInfo }) {
               <Career
                 key={field.id}
                 id={field.id}
-                handleSave={saveFields}
-                handleRemove={removeField}
+                handleSave={onSave}
+                handleRemove={onRemove}
                 savedValue={field.savedValue}
                 setterType="career"
               />
@@ -206,7 +118,7 @@ function Form({ handleBackward, handleSubmitInfo }) {
           )}
         </ul>
         <button
-          onClick={(e) => addField(e, "career")}
+          onClick={() => onAdd("career")}
           type="button"
           title="add another career field"
           className="add-btn"
@@ -217,12 +129,12 @@ function Form({ handleBackward, handleSubmitInfo }) {
 
         <h2 className="fields-title">Certification</h2>
         <ul>
-          {certFields.map((field) =>
+          {infos.cert.map((field) =>
             field.isSaved ? (
               <SavedCertificationCard
                 key={field.id}
                 id={field.id}
-                handleEdit={editFields}
+                handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="cert"
               />
@@ -230,8 +142,8 @@ function Form({ handleBackward, handleSubmitInfo }) {
               <Certification
                 key={field.id}
                 id={field.id}
-                handleSave={saveFields}
-                handleRemove={removeField}
+                handleSave={onSave}
+                handleRemove={onRemove}
                 savedValue={field.savedValue}
                 setterType="cert"
               />
@@ -239,7 +151,7 @@ function Form({ handleBackward, handleSubmitInfo }) {
           )}
         </ul>
         <button
-          onClick={(e) => addField(e, "cert")}
+          onClick={() => onAdd("cert")}
           type="button"
           title="add another certification field"
           className="add-btn"

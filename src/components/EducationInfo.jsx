@@ -190,6 +190,7 @@ function EducationInfo({
           <div className="select-container">
             <select
               id="degree"
+              className="degree-select"
               value={educationInfo.degree.value}
               onChange={handleEducationInfoChange}
             >
