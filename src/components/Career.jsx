@@ -26,7 +26,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
   );
 
   function handleCareerInfoChange(e) {
-    const { id, value, validity } = e.target;
+    const { name, value, validity } = e.target;
     const failedKeys = validityStates.filter((key) => validity[key]);
     const errorMsg =
       failedKeys.length > 0
@@ -37,7 +37,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         : "";
     setCareerInfo({
       ...careerInfo,
-      [id]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
+      [name]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
     });
   }
 
@@ -76,7 +76,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
     <li key={id}>
       <section className="career-info">
         <div className="input-unit">
-          <label htmlFor="company">
+          <label htmlFor={`company-${id}`}>
             Company{" "}
             {careerInfo.company.isValid ? null : (
               <span
@@ -92,7 +92,8 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </label>
           <input
             type="text"
-            id="company"
+            id={`company-${id}`}
+            name="company"
             placeholder="Apple Inc"
             value={careerInfo.company.value}
             onChange={handleCareerInfoChange}
@@ -101,7 +102,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="title">
+          <label htmlFor={`title-${id}`}>
             Title{" "}
             {careerInfo.title.isValid ? null : (
               <span
@@ -117,7 +118,8 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </label>
           <input
             type="text"
-            id="title"
+            id={`title-${id}`}
+            name="title"
             placeholder="Front-End Engineer"
             value={careerInfo.title.value}
             onChange={handleCareerInfoChange}
@@ -126,7 +128,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="careerStart">
+          <label htmlFor={`careerStart-${id}`}>
             From{" "}
             {careerInfo.careerStart.isValid ? null : (
               <span
@@ -142,7 +144,8 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </label>
           <input
             type="date"
-            id="careerStart"
+            id={`careerStart-${id}`}
+            name="careerStart"
             value={careerInfo.careerStart.value}
             onChange={handleCareerInfoChange}
             required
@@ -150,7 +153,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="careerEnd">
+          <label htmlFor={`careerEnd-${id}`}>
             To{" "}
             {careerInfo.careerEnd.isValid ? null : (
               <span
@@ -166,7 +169,8 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </label>
           <input
             type="date"
-            id="careerEnd"
+            id={`careerEnd-${id}`}
+            name="careerEnd"
             value={careerInfo.careerEnd.value}
             min={careerInfo.careerStart.value}
             onChange={handleCareerInfoChange}
@@ -175,12 +179,14 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="eType">Employment Type</label>
+          <label htmlFor={`eType-${id}`}>Employment Type</label>
           <div className="select-container">
             <select
-              id="eType"
+              id={`eType-${id}`}
+              name="eType"
               value={careerInfo.eType.value}
               onChange={handleCareerInfoChange}
+              className="eType-select"
             >
               <option value="Internship">Internship</option>
               <option value="Part-time">Part-time</option>
@@ -206,7 +212,7 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit">
-          <label htmlFor="income">
+          <label htmlFor={`income-${id}`}>
             Annual Salary{" "}
             {careerInfo.income.isValid ? null : (
               <span
@@ -222,9 +228,11 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
           </label>
           <div className="input-box">
             <select
-              id="currency"
+              id={`currency-${id}`}
+              name="currency"
               value={careerInfo.currency.value}
               onChange={handleCareerInfoChange}
+              className="currency-select"
             >
               <option value="$">$USD</option>
               <option value="€">€EUR</option>
@@ -232,7 +240,9 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
             </select>
             <input
               type="number"
-              id="income"
+              id={`income-${id}`}
+              name="income"
+              className="income-input"
               value={careerInfo.income.value}
               min={0}
               onChange={handleCareerInfoChange}
@@ -242,9 +252,10 @@ function Career({ id, handleRemove, handleSave, savedValue, setterType }) {
         </div>
 
         <div className="input-unit text-area">
-          <label htmlFor="JB">Job Description</label>
+          <label htmlFor={`JB-${id}`}>Job Description</label>
           <textarea
-            id="JB"
+            id={`JB-${id}`}
+            name="JB"
             placeholder="What's your role in the team? What have you accomplished? What have you learned?... Help us learn more about you."
             value={careerInfo.JB.value}
             onChange={handleCareerInfoChange}

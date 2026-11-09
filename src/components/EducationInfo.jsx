@@ -37,7 +37,7 @@ function EducationInfo({
   );
 
   function handleEducationInfoChange(e) {
-    const { id, value, validity } = e.target;
+    const { name, value, validity } = e.target;
     const failedKeys = validityStates.filter((key) => validity[key]);
     const errorMsg =
       failedKeys.length > 0
@@ -48,7 +48,7 @@ function EducationInfo({
         : "";
     setEducationInfo((prev) => ({
       ...prev,
-      [id]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
+      [name]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
     }));
   }
 
@@ -87,7 +87,7 @@ function EducationInfo({
     <li key={id}>
       <section className="education-info">
         <div className="input-unit">
-          <label htmlFor="school">
+          <label htmlFor={`school-${id}`}>
             Graduated School{" "}
             {educationInfo.school.isValid ? null : (
               <span
@@ -103,7 +103,8 @@ function EducationInfo({
           </label>
           <input
             type="text"
-            id="school"
+            id={`school-${id}`}
+            name="school"
             placeholder="Brown University"
             value={educationInfo.school.value}
             onChange={handleEducationInfoChange}
@@ -112,7 +113,7 @@ function EducationInfo({
         </div>
 
         <div className="input-unit">
-          <label htmlFor="major">
+          <label htmlFor={`major-${id}`}>
             Major{" "}
             {educationInfo.major.isValid ? null : (
               <span
@@ -128,7 +129,8 @@ function EducationInfo({
           </label>
           <input
             type="text"
-            id="major"
+            id={`major-${id}`}
+            name="major"
             placeholder="Computer Science"
             value={educationInfo.major.value}
             onChange={handleEducationInfoChange}
@@ -137,7 +139,7 @@ function EducationInfo({
         </div>
 
         <div className="input-unit">
-          <label htmlFor="from">
+          <label htmlFor={`from-${id}`}>
             From{" "}
             {educationInfo.from.isValid ? null : (
               <span
@@ -153,7 +155,8 @@ function EducationInfo({
           </label>
           <input
             type="date"
-            id="from"
+            id={`from-${id}`}
+            name="from"
             value={educationInfo.from.value}
             onChange={handleEducationInfoChange}
             required
@@ -161,7 +164,7 @@ function EducationInfo({
         </div>
 
         <div className="input-unit">
-          <label htmlFor="to">
+          <label htmlFor={`to-${id}`}>
             To{" "}
             {educationInfo.to.isValid ? null : (
               <span
@@ -177,7 +180,8 @@ function EducationInfo({
           </label>
           <input
             type="date"
-            id="to"
+            id={`to-${id}`}
+            name="to"
             value={educationInfo.to.value}
             min={educationInfo.from.value}
             onChange={handleEducationInfoChange}
@@ -186,10 +190,11 @@ function EducationInfo({
         </div>
 
         <div className="input-unit">
-          <label htmlFor="degree">Degree</label>
+          <label htmlFor={`degree-${id}`}>Degree</label>
           <div className="select-container">
             <select
-              id="degree"
+              id={`degree-${id}`}
+              name="degree"
               className="degree-select"
               value={educationInfo.degree.value}
               onChange={handleEducationInfoChange}
@@ -220,7 +225,7 @@ function EducationInfo({
         </div>
 
         <div className="input-unit">
-          <label htmlFor="gpa">
+          <label htmlFor={`gpa-${id}`}>
             GPA{" "}
             {educationInfo.gpa.isValid ? null : (
               <span
@@ -236,7 +241,8 @@ function EducationInfo({
           </label>
           <input
             type="number"
-            id="gpa"
+            id={`gpa-${id}`}
+            name="gpa"
             value={educationInfo.gpa.value}
             min={0}
             max={4}
@@ -247,9 +253,10 @@ function EducationInfo({
         </div>
 
         <div className="input-unit text-area">
-          <label htmlFor="moreInfo">More information</label>
+          <label htmlFor={`moreInfo-${id}`}>More information</label>
           <textarea
-            id="moreInfo"
+            id={`moreInfo-${id}`}
+            name="moreInfo"
             value={educationInfo.moreInfo.value}
             onChange={handleEducationInfoChange}
             placeholder="Your school life, what have your learned, your achievement etc... Help us know more about your education experience."

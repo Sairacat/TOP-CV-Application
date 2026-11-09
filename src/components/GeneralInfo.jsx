@@ -29,14 +29,14 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
   );
 
   function handleGeneralInfoChange(e) {
-    const { id, value, validity } = e.target;
+    const { name, value, validity } = e.target;
     const failedKeys = validityStates.filter((key) => validity[key]);
     const errorMsg =
       failedKeys.length > 0
         ? failedKeys
             .map((key) => {
               if (key === "tooShort") {
-                return errorMessageMap[key][id];
+                return errorMessageMap[key][name];
               } else {
                 return errorMessageMap[key];
               }
@@ -46,7 +46,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         : "";
     setGeneralInfo((prev) => ({
       ...prev,
-      [id]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
+      [name]: { value: value, isValid: validity.valid, errorMsg: errorMsg },
     }));
   }
 
@@ -57,10 +57,13 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
     Object.keys(validatedInfo).forEach((key) => {
       const field = validatedInfo[key];
       if (!field.isValid) {
+        console.log(key)
         hasError = true;
+        return;
       }
 
       if (field.value.trim() === "" && field.isValid) {
+        console.log(key)
         validatedInfo[key] = {
           ...field,
           isValid: false,
@@ -72,8 +75,10 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
     });
 
     if (hasError) {
+      console.log('validating...')
       setGeneralInfo(validatedInfo);
     } else {
+      console.log('proceeding save')
       handleSave(id, generalInfo, setterType);
     }
   }
@@ -81,7 +86,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
   return (
     <section id="general-info">
       <div className="input-unit">
-        <label htmlFor="firstName">
+        <label htmlFor={`firstName-${id}`}>
           First Name{" "}
           {generalInfo.firstName.isValid ? null : (
             <span
@@ -97,7 +102,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input
           type="text"
-          id="firstName"
+          id={`firstName-${id}`}
+          name="firstName"
           placeholder="Jack"
           value={generalInfo.firstName.value}
           onChange={handleGeneralInfoChange}
@@ -107,7 +113,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit">
-        <label htmlFor="email">
+        <label htmlFor={`email-${id}`}>
           E-mail{" "}
           {generalInfo.email.isValid ? null : (
             <span
@@ -123,7 +129,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input
           type="email"
-          id="email"
+          id={`email-${id}`}
+          name="email"
           placeholder="fakeEmail@mail.com"
           value={generalInfo.email.value}
           onChange={handleGeneralInfoChange}
@@ -132,7 +139,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit">
-        <label htmlFor="lastName">
+        <label htmlFor={`lastName-${id}`}>
           Last Name{" "}
           {generalInfo.lastName.isValid ? null : (
             <span
@@ -148,7 +155,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input
           type="text"
-          id="lastName"
+          id={`lastName-${id}`}
+          name="lastName"
           placeholder="Muller"
           value={generalInfo.lastName.value}
           onChange={handleGeneralInfoChange}
@@ -158,7 +166,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit">
-        <label htmlFor="phone">
+        <label htmlFor={`phone-${id}`}>
           Phone{" "}
           {generalInfo.phone.isValid ? null : (
             <span
@@ -174,7 +182,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input
           type="tel"
-          id="phone"
+          id={`phone-${id}`}
+          name="phone"
           placeholder="051-8233"
           value={generalInfo.phone.value}
           onChange={handleGeneralInfoChange}
@@ -184,7 +193,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit">
-        <label htmlFor="currentTitle">
+        <label htmlFor={`currentTitle-${id}`}>
           Current Title{" "}
           {generalInfo.currentTitle.isValid ? null : (
             <span
@@ -200,7 +209,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input 
           type="text"
-          id="currentTitle"
+          id={`currentTitle-${id}`}
+          name="currentTitle"
           placeholder="cat owner"
           value={generalInfo.currentTitle.value}
           onChange={handleGeneralInfoChange}
@@ -208,7 +218,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit">
-        <label htmlFor="address">
+        <label htmlFor={`address-${id}`}>
           Address{" "}
           {generalInfo.address.isValid ? null : (
             <span
@@ -224,7 +234,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
         </label>
         <input 
           type="text"
-          id="address"
+          id={`address-${id}`}
+          name="address"
           placeholder="213 random St. Any City"
           value={generalInfo.address.value}
           onChange={handleGeneralInfoChange}
@@ -232,7 +243,7 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
       </div>
 
       <div className="input-unit text-area">
-        <label htmlFor="aboutMe">
+        <label htmlFor={`aboutMe-${id}`}>
           About Me{" "}
           {generalInfo.aboutMe.isValid ? null : (
             <span
@@ -247,7 +258,8 @@ function GeneralInfo({ id, handleSave, savedValue, setterType }) {
           )}
         </label>
         <textarea
-          id="aboutMe"
+          id={`aboutMe-${id}`}
+          name="aboutMe"
           value={generalInfo.aboutMe.value}
           onChange={handleGeneralInfoChange}
           placeholder="Your hobbies, your experties, how do you consider yourself, what are your dreams..."

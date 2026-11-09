@@ -32,8 +32,10 @@ function App() {
       ...prev,
       [type]: prev[type].map((field) => {
         if (field.id === id) {
+          console.log('save successful')
           return { ...field, isSaved: true, savedValue: { ...info } };
         } else {
+          console.log('save failed')
           return field;
         }
       }),

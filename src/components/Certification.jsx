@@ -15,10 +15,10 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
     )
 
     function handleCertInfoChange(e) {
-        const {id, value, validity} = e.target;
+        const {name, value, validity} = e.target;
         const failedKeys = validationStates.filter(key => validity[key]);
         const errorMsg = failedKeys.length > 0 ? failedKeys.map(key => errorMessageMap[key]).join("").slice(1) : "";
-        setCertInfo({...certInfo, [id]:{value: value, isValid: validity.valid, errorMsg: errorMsg}});
+        setCertInfo({...certInfo, [name]:{value: value, isValid: validity.valid, errorMsg: errorMsg}});
     }
 
     function handleValidationAndSave() {
@@ -54,7 +54,7 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
         <li key={id}>
             <section className="cert-info">
                 <div className="input-unit">
-                    <label htmlFor="certName">
+                    <label htmlFor={`certName-${id}`}>
                         Certification Name{" "}
                         {certInfo.certName.isValid ? null : (
                         <span
@@ -69,14 +69,15 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
                         )}
                     </label>
                     <input type="text"
-                            id="certName"
+                            id={`certName-${id}`}
+                            name="certName"
                             placeholder="AI Researcher Certification"
                             value={certInfo.certName.value}
                             onChange={handleCertInfoChange} 
                             required/>
                 </div>
                 <div className="input-unit">
-                    <label htmlFor="acquiredTime">
+                    <label htmlFor={`acquiredTime-${id}`}>
                         Acquired Time{" "}
                         {certInfo.acquiredTime.isValid ? null : (
                         <span
@@ -91,7 +92,8 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
                         )}
                     </label>
                     <input type="date"
-                            id="acquiredTime"
+                            id={`acquiredTime-${id}`}
+                            name="acquiredTime"
                             value={certInfo.acquiredTime.value}
                             onChange={handleCertInfoChange} 
                             required/>
