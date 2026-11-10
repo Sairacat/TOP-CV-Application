@@ -2,8 +2,9 @@ import mailIcon from "../assets/mail-icon.svg";
 import phoneIcon from "../assets/phone-icon.svg";
 import locationIcon from "../assets/location-icon.svg";
 import "../styles/savedCards.css";
+import { formatName, formatDate, formatIncome } from "../format-functions.js";
 
-function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
+function SavedGeneralCard({ savedValue, id, handleEdit, setterType, handleForward }) {
   return (
     <section className="info-card">
       <div className="card-header">
@@ -14,14 +15,25 @@ function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
           </h2>
           <span className="value">{savedValue.currentTitle.value}</span>
         </div>
-        <button
-          className="edit-btn"
-          type="button"
-          onClick={() => handleEdit(id, setterType)}
-          title="edit button"
-        >
-          Edit
-        </button>
+        <div className="button-set">
+          <button
+            className="preview-btn"
+            type="button"
+            onClick={handleForward}
+            title="preview result"
+          >
+            Preview
+          </button>
+
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={() => handleEdit(id, setterType)}
+            title="edit button"
+          >
+            Edit
+          </button>          
+        </div>
       </div>
       <div className="card-body-general">
         <p className="info-unit">
@@ -42,21 +54,32 @@ function SavedGeneralCard({ savedValue, id, handleEdit, setterType }) {
   );
 }
 
-function SavedEducationCard({ savedValue, id, handleEdit, setterType }) {
+function SavedEducationCard({ savedValue, id, handleEdit, setterType, handleForward }) {
   return (
     <section className="info-card">
       <div className="card-header">
         <h2>
           {savedValue.degree.value} of {savedValue.major.value}
         </h2>
-        <button
-          className="edit-btn"
-          type="button"
-          onClick={() => handleEdit(id, setterType)}
-          title="edit button"
-        >
-          Edit
-        </button>
+        <div className="button-set">
+          <button
+            className="preview-btn"
+            type="button"
+            onClick={handleForward}
+            title="preview result"
+          >
+            Preview
+          </button>
+          
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={() => handleEdit(id, setterType)}
+            title="edit button"
+          >
+            Edit
+          </button>          
+        </div>
       </div>
       <div className="card-body-edu">
         <p className="info-unit">
@@ -76,19 +99,30 @@ function SavedEducationCard({ savedValue, id, handleEdit, setterType }) {
   );
 }
 
-function SavedCareerCard({ savedValue, id, handleEdit, setterType }) {
+function SavedCareerCard({ savedValue, id, handleEdit, setterType, handleForward }) {
   return (
     <section className="info-card">
       <div className="card-header">
         <h2>{savedValue.title.value}</h2>
-        <button
-          className="edit-btn"
-          type="button"
-          onClick={() => handleEdit(id, setterType)}
-          title="edit button"
-        >
-          Edit
-        </button>
+        <div className="button-set">
+          <button
+            className="preview-btn"
+            type="button"
+            onClick={handleForward}
+            title="preview result"
+          >
+            Preview
+          </button>
+          
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={() => handleEdit(id, setterType)}
+            title="edit button"
+          >
+            Edit
+          </button>          
+        </div>
       </div>
       <div className="card-body-career">
         <p className="info-unit">
@@ -115,45 +149,36 @@ function SavedCareerCard({ savedValue, id, handleEdit, setterType }) {
   );
 }
 
-function SavedCertificationCard({ savedValue, id, handleEdit, setterType }) {
+function SavedCertificationCard({ savedValue, id, handleEdit, setterType, handleForward }) {
   return (
     <section className="info-card">
       <div className="cert-header">
-        <h2>{savedValue.certName.value}</h2>
-        <span className="value">{formatDate(savedValue.acquiredTime.value)}</span>
-        <button
-          className="edit-btn"
-          type="button"
-          onClick={() => handleEdit(id, setterType)}
-          title="edit button"
-        >
-          Edit
-        </button>
+        <div className="cert-title">
+          <h2>{savedValue.certName.value}</h2>
+          <span className="value">{formatDate(savedValue.acquiredTime.value)}</span>
+        </div>
+        <div className="button-set">
+          <button
+            className="preview-btn"
+            type="button"
+            onClick={handleForward}
+            title="preview result"
+          >
+            Preview
+          </button>
+          
+          <button
+            className="edit-btn"
+            type="button"
+            onClick={() => handleEdit(id, setterType)}
+            title="edit button"
+          >
+            Edit
+          </button>          
+        </div>
       </div>
     </section>
   );
-}
-
-function formatName(name) {
-  const trimmedName = name.trim();
-  return (
-    trimmedName.slice(0, 1).toUpperCase() + trimmedName.slice(1).toLowerCase()
-  );
-}
-
-function formatDate(date) {
-  if (!date) return;
-  const dateArray = date.split("-");
-  const formattedDate = `${dateArray[0]}.${dateArray[1]}`;
-  return formattedDate;
-}
-
-function formatIncome(value) {
-  if (value === "" || value === null || isNaN(value)) {
-    return "0";
-  }
-
-  return Number(value).toLocaleString("en-US");
 }
 
 export {

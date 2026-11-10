@@ -48,6 +48,7 @@ function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onR
               handleEdit={onEdit}
               savedValue={field.savedValue}
               setterType="general"
+              handleForward={handleForward}
             />
           ) : (
             <GeneralInfo
@@ -71,6 +72,7 @@ function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onR
                 handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="education"
+                handleForward={handleForward}
               />
             ) : (
               <EducationInfo
@@ -104,6 +106,7 @@ function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onR
                 handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="career"
+                handleForward={handleForward}
               />
             ) : (
               <Career
@@ -127,7 +130,7 @@ function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onR
           <img src={addBtn} alt="add another career filed" height="32" />
         </button>
 
-        <h2 className="fields-title">Certification</h2>
+        <h2 className="fields-title">Certification&Reward</h2>
         <ul>
           {infos.cert.map((field) =>
             field.isSaved ? (
@@ -137,6 +140,7 @@ function Form({ handleBackward, handleForward, infos, onSave, onEdit, onAdd, onR
                 handleEdit={onEdit}
                 savedValue={field.savedValue}
                 setterType="cert"
+                handleForward={handleForward}
               />
             ) : (
               <Certification

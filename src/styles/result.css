@@ -3,6 +3,149 @@
     min-height: 100vh;
     margin: 0 auto;
     padding: 1rem;
-    border: 1px solid black;
 }
+
+.templateA {
+    display: grid;
+    grid-template-rows: 200px 1fr;
+    animation: dropDown 0.35s ease forwards;
+
+    .resume-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 2rem;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    }
+
+    .resume-title h1{
+        font-size: 72px;
+    }
+
+    .resume-title span {
+        font-size: 36px;
+        font-style: italic;
+    }
+
+    .resume-body {
+        display: grid;
+        padding-left: 2rem;
+        grid-template-columns: 1fr 2fr;
+        padding-top: 100px;
+    }
+
+    .resume-body section {
+        margin-bottom: 100px;
+    }
+
+    .resume-body h2 {
+        margin-bottom: 30px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 36px;
+    }
+
+    .resume-body h3 {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    aside {
+        border-right: 3px solid black;
+    }
+
+    .contact-unit {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .contact-area li {
+        margin-bottom: 20px;
+    }
+
+    .education-area li,
+    .career-area li {
+        margin-bottom: 50px;
+    }
+
+    .education-unit,
+    .career-unit {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .education-area {
+        width: 80%;
+    }
+
+    .education-unit h3 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .education-unit p,
+    .career-unit p {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #111111;
+        font-weight: 600;
+    }
+
+    .education-unit .education-moreInfo{
+        word-break: break-all;
+        font-weight: 400;
+        color: #555555; 
+        line-height: 1.7;
+    }
+
+    .career-unit h3 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .career-unit .career-JB {
+        word-break: break-all;
+        font-weight: 400;
+        color: #555555; 
+        line-height: 1.7;
+    }
+
+
+    main {
+        padding-left: 100px;
+    }
+
+    .profile-area p {
+        font-size: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        line-height: 1.7;
+        font-weight: 400;
+        color: #555555; 
+    }
+
+    .cert-unit {
+        display: flex;
+        justify-content: space-between;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: #555555;
+        font-weight: 600;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .dot {
+        content: '';
+        width: 12px;
+        height: 12px;
+        border-radius: 7px;
+        background-color: black;
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+}
+
 

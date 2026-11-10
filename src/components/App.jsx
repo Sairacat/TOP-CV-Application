@@ -116,9 +116,28 @@ function App() {
           checkForm={checkForm}
         />
       )}
-      {pageIndex === 3 && <Result infos={infos} template={template} />}
+      {pageIndex === 3 && <Result infos={cleanUpData(infos)} template={template} handleBackward={backwardPage}/>}
     </div>
   );
+}
+
+function cleanUpData(info) {
+    const newInfo = {}
+    Object.keys(info).forEach(key => {
+      const sections = info[key];
+      
+      const newSections = sections
+      .filter(section => section.isSaved)
+      .map(section => ({
+        id:section.id,
+        ...Object.fromEntries(
+          Object.entries(section.savedValue).map(([key, item]) => [key, item.value])
+        )
+      }))
+      newInfo[key] = newSections;
+    })
+
+    return newInfo;
 }
 
 export { App };

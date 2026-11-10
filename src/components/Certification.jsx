@@ -55,7 +55,7 @@ function Certification({id, handleRemove, handleSave, savedValue, setterType}) {
             <section className="cert-info">
                 <div className="input-unit">
                     <label htmlFor={`certName-${id}`}>
-                        Certification Name{" "}
+                        Name{" "}
                         {certInfo.certName.isValid ? null : (
                         <span
                             style={{
