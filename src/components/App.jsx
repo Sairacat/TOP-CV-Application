@@ -30,7 +30,8 @@ function App() {
   function saveSection(id, info, type) {
     setInfos((prev) => ({
       ...prev,
-      [type]: prev[type].map((field) => {
+      [type]: prev[type]
+      .map((field) => {
         if (field.id === id) {
           console.log('save successful')
           return { ...field, isSaved: true, savedValue: { ...info } };
@@ -38,7 +39,7 @@ function App() {
           console.log('save failed')
           return field;
         }
-      }),
+      })
     }));
   }
 

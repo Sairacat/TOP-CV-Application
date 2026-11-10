@@ -3,7 +3,7 @@ import "../styles/form.css";
 import arrowLeft from "../assets/arrow-left.svg";
 import arrowUp from "../assets/arrow-up.svg";
 import addBtn from "../assets/add-btn.svg";
-import closeBtn from "../assets/close-Btn.svg";
+import closeBtn from "../assets/close-btn.svg";
 import { GeneralInfo } from "./GeneralInfo.jsx";
 import { EducationInfo } from "./EducationInfo.jsx";
 import { Career } from "./Career.jsx";
