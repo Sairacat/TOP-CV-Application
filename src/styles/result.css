@@ -127,11 +127,18 @@
     .cert-unit {
         display: flex;
         justify-content: space-between;
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        color: #555555;
-        font-weight: 600;
         position: relative;
         margin-bottom: 20px;
+    }
+
+    .cert-unit > p{
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .cert-unit > .ac-time {
+        font-weight: 400;
+        color: #555555; 
     }
 
     .dot {
@@ -148,4 +155,130 @@
 
 }
 
+
+.templateB {
+    padding-top: 50px;
+    animation: dropDown 0.35s ease forwards;
+
+    .resume-title {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #111111;
+    }
+
+    .resume-title h1 {
+        font-size: 72px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .resume-title .job-title {
+        font-size: 36px;
+        font-weight: 300;
+        margin-bottom: 50px;
+    }
+
+    .contact-area {
+        width: 100%;
+    }
+
+    .contact-area ul {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .contact-unit {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .resume-body h2{
+        font-size: 36px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        margin-bottom: 1rem;
+    }
+
+    .resume-body section {
+        padding-top: 1rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid #111111;
+    }
+
+    .profile-area p,
+    .education-unit .education-moreInfo,
+    .career-unit .career-JB {
+        font-size: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        line-height: 1.7;
+        font-weight: 400;
+        color: #555555; 
+    }
+
+    .education-area > ul > :not(:last-child),
+    .career-area > ul > :not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    .education-unit,
+    .career-unit {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .education-unit h3,
+    .career-unit h3 {
+        color: #555555; 
+        font-weight: 400;
+    }
+
+    .education-unit .degree-major,
+    .career-unit .title-income {
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .resume-body .cert-area {
+        border: none;
+    }
+
+    .cert-unit {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .cert-unit > p{
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .cert-unit > .ac-time {
+        font-weight: 400;
+        color: #555555; 
+    }
+
+    .cert-area > ul {
+        padding-left: 20px;
+    }
+
+    .dot {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 7px;
+    background-color: black;
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    }
+}
 
